@@ -1,0 +1,24 @@
+<form [formGroup]="inputForm" (ngSubmit)="onSubmit()">
+    <div class="">
+        <label for="cadastralNumber" class="form-label">Кадастровый номер участка</label>
+        <input type="text" id="cadastralNumber" mask="00-000-000-0000||00-000-000-000" placeholder="2-345-678-901"
+            formControlName="cadastralNumber">
+        <span *ngIf="!inputForm.get('cadastralNumber')?.valid && inputForm.get('cadastralNumber')?.touched">
+            Введите правильный кадастровый номер
+        </span>
+    </div>
+
+    <div class="">
+        <label for="telefonNumber" class="form-label">Номер телефона</label>
+        <input prefix="+7" mask="(000)-000-00-00" type="text" id="telefonNumber" formControlName="telefonNumber">
+        <span *ngIf="!inputForm.get('telefonNumber')?.valid && inputForm.get('cadastralNumber')?.touched">
+            Введите правильный номер телефона
+        </span>
+    </div>
+    <!-- Отключение кнопки при неправильно введенных данных -->
+    <!-- <button [disabled]="!inputForm.valid">Сохранить</button> -->
+    <button>Сохранить</button>
+    <span *ngIf="!isValid">
+        Заполните данные корректно
+    </span>
+</form>
