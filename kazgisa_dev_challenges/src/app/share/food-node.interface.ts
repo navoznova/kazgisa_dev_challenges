@@ -1,4 +1,4 @@
-export interface FoodNode {
+export interface SectionNode {
     name: string;
-    children?: FoodNode[];
+    children?: SectionNode[];
 }

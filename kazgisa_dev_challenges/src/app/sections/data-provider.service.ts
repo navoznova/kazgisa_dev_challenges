@@ -1,41 +1,67 @@
 import { Injectable } from '@angular/core';
-import { FoodNode } from '../share/food-node.interface';
+import { Subject } from 'rxjs';
+import { SectionNode } from '../share/food-node.interface';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class DataProviderService {
-  data: FoodNode[] = [
-    {
-      name: 'Fruit',
-      children: [{ name: 'Apple' }, { name: 'Banana' }, { name: 'Fruit loops' }],
-    },
-    {
-      name: 'Vegetables',
-      children: [
-        {
-          name: 'Green',
-          children: [{ name: 'Broccoli' }, { name: 'Brussels sprouts' }],
-        },
-        {
-          name: 'Orange',
-          children: [{ name: 'Pumpkins' }, { name: 'Carrots' }],
-        },
-      ],
-    },
-  ];
+	isChanged = new Subject<SectionNode[]>();
 
-  constructor() { }
+	data: SectionNode[] = [
+		{
+			name: 'Root',
+			children: [
+				{
+					name: 'Section',
+					children: [
+						{ name: 'Subsection' },
+						{ name: 'Subsection' }
+					],
+				},
+				{
+					name: 'Section',
+					children: [
+						{ name: 'Subsection' },
+						{ name: 'Subsection' }
+					],
+				},
+			],
+		},
+	];
 
-  addSection(sections: FoodNode){
-    this.data.push(sections);
-  }
+	constructor() { }
 
-  deleteSection(index: number){
-    this.data.slice(index, 1);
-  }
+	getData() {
+		return this.data;
+	}
 
-  updateSectionName(index: number, name: string){
+	addSection(section: SectionNode) {
+		this.data[0].children?.push(section);
+		this.isChanged.next(this.data);
+	}
 
-  }
+	addSubSection(section: SectionNode, index: number) {
+		this.data[0].children?.[index].children?.push(section);
+		this.isChanged.next(this.data);
+	}
+
+	deleteSection(index: number) {
+		this.data[0].children?.splice(index, 1)
+		this.isChanged.next(this.data);
+	}
+
+	deleteSubSection(index1: number, index2: number) {
+		this.data[0].children?.[index1]!.children?.splice(index2, 1)
+		this.isChanged.next(this.data);
+	}
+
+	updateSectionName(index: number, name: string) {
+		console.log(this.data[0].children![index]!.name + index)
+		
+	}
+
+	updateSubSectionName(index1: number, index2: number, name: string) {
+		console.log(this.data[0].children![index1].children![index2].name + index1+ index2);
+	}
 }

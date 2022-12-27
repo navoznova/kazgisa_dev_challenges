@@ -1,20 +1,24 @@
 <ul>
-	Root
-	<button>Add</button>
-	
 	<li *ngFor="let tree of data">{{tree.name}}
-		<button>Add</button>
-		<button>Delete</button>
-		<button>Edit</button>
+		<button (click)="onAddSection()">Add</button>
 
 		<div *ngIf="tree.children">
 			<ul>
-				<li *ngFor="let node of tree.children">{{node.name}}
-					<button>Delete</button>
-					<button>Edit</button>
+				<li *ngFor="let node of tree.children; let i = index">{{node.name + i}}
+					<button (click)="onAddSubSection(i)">Add</button>
+					<button (click)="onDeleteSection(i)">Delete</button>
+					<button (click)="onEditSection(i, 'новое имя')">Edit</button>
+
+					<div *ngIf="node.children">
+						<ul>
+							<li *ngFor="let n of node.children; let j = index">{{n.name + i+"."+j}}
+								<button (click)="onDeleteSubSection(i, j)">Delete</button>
+								<button (click)="onEditSubSection(i, j, 'новое имя')">Edit</button>
+							</li>
+						</ul>
+					</div>
 				</li>
 			</ul>
 		</div>
-
 	</li>
 </ul>
