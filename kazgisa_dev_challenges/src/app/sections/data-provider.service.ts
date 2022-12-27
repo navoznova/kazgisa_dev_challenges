@@ -26,4 +26,16 @@ export class DataProviderService {
   ];
 
   constructor() { }
+
+  addSection(sections: FoodNode){
+    this.data.push(sections);
+  }
+
+  deleteSection(index: number){
+    this.data.slice(index, 1);
+  }
+
+  updateSectionName(index: number, name: string){
+
+  }
 }

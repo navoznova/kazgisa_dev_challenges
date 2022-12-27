@@ -11,7 +11,6 @@ import { DataProviderService } from './data-provider.service';
 
 export class SectionsComponent implements OnInit{
   data!: FoodNode [];
-  hasChildren: boolean = false;
 
   constructor( private dataProvider: DataProviderService) {
   }
