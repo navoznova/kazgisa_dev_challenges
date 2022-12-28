@@ -11,7 +11,18 @@
 						[ngTemplateOutletContext]="{ $implicit: 1}">
 					</ng-template>
 
-					
+					<ng-template #readMode>
+						{{node.name + i}}
+						<button (click)="onAddSubSection(i)">Add</button>
+						<button (click)="onDeleteSection(i)">Delete</button>
+						<button (click)="onEditSection(i, 'новое имя')">Edit</button>
+					</ng-template>
+
+					<ng-template #editSectionName>
+						<input type="text" [(ngModel)]="newName">
+						<button (click)="onSave()">Save</button>
+						<button (click)="onCansel()">Delete</button>
+					</ng-template>
 
 
 					<div *ngIf="node.children">
