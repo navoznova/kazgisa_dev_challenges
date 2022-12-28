@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { SectionNode } from '../share/food-node.interface';
 import { DataProviderService } from './data-provider.service';
 
@@ -11,6 +11,11 @@ import { DataProviderService } from './data-provider.service';
 
 export class SectionsComponent implements OnInit {
 	data!: SectionNode[];
+	isEditMode: boolean = false;
+	newName: string = '';
+
+	@ViewChild('editSectionName') editTemplate!: TemplateRef<any>;
+	@ViewChild('readMode') readTemplate!: TemplateRef<any>;
 
 	constructor(private dataProvider: DataProviderService) {
 	}
@@ -25,12 +30,12 @@ export class SectionsComponent implements OnInit {
 	}
 
 	onAddSection() {
-		let newSection: SectionNode = {name: 'Section'}
+		let newSection: SectionNode = { name: 'Section' }
 		this.dataProvider.addSection(newSection);
 	}
 
 	onAddSubSection(index: number) {
-		let newSubSection: SectionNode = {name: 'Subsection'}
+		let newSubSection: SectionNode = { name: 'Subsection' }
 		this.dataProvider.addSubSection(newSubSection, index);
 	}
 
@@ -43,11 +48,23 @@ export class SectionsComponent implements OnInit {
 	}
 
 	onEditSection(index: number, newName: string) {
-		this.dataProvider.updateSectionName(index, newName);
+		this.isEditMode = true;
+		return this.editTemplate;
+
+		console.log(this.editTemplate)
+		// this.dataProvider.updateSectionName(index, newName);
 	}
 
 	onEditSubSection(index1: number, index2: number, newName: string) {
-		this.dataProvider.updateSubSectionName(index1, index2, newName);
+		// this.dataProvider.updateSubSectionName(index1, index2, newName);
+	}
+
+	onCansel() {
+		return this.readTemplate
+		console.log('Cansel' + this.newName);
+	}
+	onSave() {
+		console.log('Save');
 	}
 
 

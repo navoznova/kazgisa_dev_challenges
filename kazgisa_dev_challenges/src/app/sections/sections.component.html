@@ -4,10 +4,15 @@
 
 		<div *ngIf="tree.children">
 			<ul>
-				<li *ngFor="let node of tree.children; let i = index">{{node.name + i}}
-					<button (click)="onAddSubSection(i)">Add</button>
-					<button (click)="onDeleteSection(i)">Delete</button>
-					<button (click)="onEditSection(i, 'новое имя')">Edit</button>
+				<li *ngFor="let node of tree.children; let i = index">
+					<ng-template 
+						*ngIf="isEditMode else readMode" 
+						[ngTemplateOutlet]="onEditSection(1, '4')"
+						[ngTemplateOutletContext]="{ $implicit: 1}">
+					</ng-template>
+
+					
+
 
 					<div *ngIf="node.children">
 						<ul>
