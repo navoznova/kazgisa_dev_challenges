@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask} from 'ngx-mask';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatIconModule} from '@angular/material/icon';
+import { FieldsComponent } from './fields/fields.component';
 
 
 
@@ -19,7 +20,8 @@ import {MatIconModule} from '@angular/material/icon';
     AppComponent,
     HeaderComponent,
     SectionsComponent,
-    InputComponent
+    InputComponent,
+    FieldsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,32 @@
 <ul>
-	<li *ngFor="let tree of data">{{tree.name}}
+	<li>
+		{{data.name}}
 		<button (click)="onAddSection()">Add</button>
+	</li>
+	<div *ngIf="data.children">
+		<ul>
+			<li *ngFor="let node of data.children; let i = index">
+				{{node.name}}
+				<button (click)="onAddSubSection(i)">Add</button>
+				<button (click)="onDeleteSection(i)">Delete</button>
+				<button (click)="onEditSection(i, 'новое имя')">Edit</button>
+				
+				<div *ngIf="node.children">
+					<ul>
+						<li *ngFor="let n of node.children; let j = index">{{n.name + i+"."+j}}
+							<button (click)="onDeleteSubSection(i, j)">Delete</button>
+							<button (click)="onEditSubSection(i, j, 'новое имя')">Edit</button>
+						</li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+	</div>
+</ul>
 
-		<div *ngIf="tree.children">
-			<ul>
-				<li *ngFor="let node of tree.children; let i = index">
-					<ng-template 
+
+
+<!-- <ng-template 
 						*ngIf="isEditMode else readMode" 
 						[ngTemplateOutlet]="onEditSection(1, '4')"
 						[ngTemplateOutletContext]="{ $implicit: 1}">
@@ -22,19 +43,4 @@
 						<input type="text" [(ngModel)]="newName">
 						<button (click)="onSave()">Save</button>
 						<button (click)="onCansel()">Delete</button>
-					</ng-template>
-
-
-					<div *ngIf="node.children">
-						<ul>
-							<li *ngFor="let n of node.children; let j = index">{{n.name + i+"."+j}}
-								<button (click)="onDeleteSubSection(i, j)">Delete</button>
-								<button (click)="onEditSubSection(i, j, 'новое имя')">Edit</button>
-							</li>
-						</ul>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</li>
-</ul>
+					</ng-template> -->

@@ -10,7 +10,8 @@ import { DataProviderService } from './data-provider.service';
 })
 
 export class SectionsComponent implements OnInit {
-	data!: SectionNode[];
+	data!: SectionNode;
+	node!: SectionNode;
 	isEditMode: boolean = false;
 	newName: string = '';
 
@@ -23,7 +24,7 @@ export class SectionsComponent implements OnInit {
 	ngOnInit() {
 		this.data = this.dataProvider.getData();
 		this.dataProvider.isChanged.subscribe(
-			(data: SectionNode[]) => {
+			(data: SectionNode) => {
 				this.data = data;
 			}
 		)

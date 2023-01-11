@@ -1,0 +1,29 @@
+.form__inputs {
+  margin: 30px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction:column;
+  gap: 5px;
+}
+
+label {
+  margin-top: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: gray;
+  font: normal 500 12px/18px Inter, sans-serif;
+}
+
+input {
+  box-sizing: border-box;
+  width: 350px;
+  height: 56px;
+
+  padding: 24px 50px 24px 24px;
+
+  border: 1px solid gray;
+  box-shadow: 0 1px 1px rgba(51, 154, 240, 0.1);
+  border-radius: 8px;
+}

@@ -1,0 +1,74 @@
+<form class="form__inputs"
+    [formGroup]="inputForm" 
+    (ngSubmit)="onSubmit()">
+
+    <!-- Number field -->
+    <div class="form-group">
+        <label for="number">Number field</label>
+        <div>
+            <input 
+                type="number" 
+                name="default" 
+                id="number" 
+                placeholder="Placeholder"
+                formControlName="number">
+        </div>
+    </div>
+
+    <!-- Text field -->
+    <div class="form-group">
+        <label for="text">Text field</label>
+        <div>
+            <input 
+                type="text" 
+                name="default" 
+                id="text" 
+                placeholder="Placeholder"
+                formControlName="text">
+        </div>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+        <label for="Email">Email field</label>
+        <div>
+            <input 
+                type="email" 
+                name="default" 
+                id="email" 
+                placeholder="Placeholder"
+                formControlName="email">
+        </div>
+    </div>
+
+    <!-- Radio buttons -->
+    <div class="form-group">
+        <label for="radio">Radio buttons</label>
+        <div>
+            <input 
+                type="radio" 
+                name="radio" 
+                id="radio" 
+                placeholder="Placeholder"
+                formControlName="radio">
+        </div>
+    </div>
+
+    <!-- Upload fole -->
+    <div class="form-group">
+        <label for="file">Upload file</label>
+        <div>
+            <input 
+                type="file" 
+                name="default" 
+                id="file" 
+                placeholder="Placeholder"
+                formControlName="file">
+        </div>
+    </div>
+
+    <button>Сохранить</button>
+
+</form>
+
+    
